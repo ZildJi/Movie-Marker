@@ -1,0 +1,99 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: #fff;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+nav a {
+  color: #fff;
+  margin-left: 1rem;
+}
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+.movies { padding: 0 2rem 3rem; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: #1e1e1e;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.meta { color: #aaa; font-size: 0.9rem; }
+header h1 a { color: #fff; text-decoration: none; }
+.form-page { max-width: 420px; margin: 2rem auto; padding: 0 1rem; }
+.form-page label { display: block; margin-bottom: 1rem; }
+.form-page input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: #1e1e1e;
+  color: #fff;
+}
+.form-page button {
+  background: #e50914;
+  color: #fff;
+  border: 0;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.alert { padding: 0.8rem 1rem; margin-bottom: 1rem; border-left: 5px solid; background: #1e1e1e; }
+.alert.error { border-color: #e50914; }
+.alert.success { border-color: #2e9d57; }
+
+header h1 a { color: #fff; text-decoration: none; }
+.form-page { max-width: 420px; margin: 2rem auto; padding: 0 1rem; }
+.form-page label { display: block; margin-bottom: 1rem; }
+.form-page input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: #1e1e1e;
+  color: #fff;
+}
+.form-page button {
+  background: #e50914;
+  color: #fff;
+  border: 0;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.alert { padding: 0.8rem 1rem; margin-bottom: 1rem; border-left: 5px solid; background: #1e1e1e; }
+.alert.error { border-color: #e50914; }
+.alert.success { border-color: #2e9d57; }
+
+.btn, .btn-link {
+  display: inline-block;
+  background: #e50914;
+  color: #fff;
+  border: 0;
+  padding: 0.45rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.btn.danger { background: #555; }
+.saved { color: #2e9d57; font-size: 0.9rem; }
+.inline { display: inline-block; margin: 0.3rem 0.3rem 0 0; }
+.card.watched h3 { text-decoration: line-through; color: #888; }
+nav span { margin-right: 1rem; }
+
+.form-links { margin-top: 1.2rem; line-height: 1.8; }
+.form-links a { color: #e50914; }
