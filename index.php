@@ -2,7 +2,10 @@
 session_start();
 require 'db.php';
 
-$stmt = $pdo->query('SELECT * FROM movies ORDER BY release_year DESC');
+$search = trim($_GET['q'] ?? '');
+$like = '%' . $search . '%';
+$stmt = $pdo->prepare('SELECT * FROM movies WHERE title LIKE ? OR genre LIKE ? ORDER BY title ASC');
+$stmt->execute([$like, $like]);
 $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $saved = [];
@@ -22,6 +25,10 @@ unset($_SESSION['flash']);
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Movie Marker</title>
   <link rel="stylesheet" href="style.css">
+    <style>
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+    .card img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 6px; margin-bottom: 0.6rem; }
+  </style>
 </head>
 <body>
   <header>
@@ -40,8 +47,13 @@ unset($_SESSION['flash']);
 
   <main>
     <section class="hero">
-      <h2>Find your next movie.</h2>
-      <p>Browse freely. Log in to save movies and build your watch list.</p>
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <h2>Welcome back, <?= htmlspecialchars($_SESSION['username']) ?>! 🍿</h2>
+        <p>Lights, camera, watch list. Pick your next movie night.</p>
+      <?php else: ?>
+        <h2>Find your next movie.</h2>
+        <p>Browse freely. Log in to save movies and build your watch list.</p>
+      <?php endif; ?>
     </section>
 
     <section class="movies">
@@ -50,10 +62,26 @@ unset($_SESSION['flash']);
       <?php endif; ?>
 
       <h2>Browse movies</h2>
+            <form method="get" class="search">
+        <input type="search" name="q" value="<?= htmlspecialchars($search) ?>"
+               placeholder="Search by title or genre">
+        <button type="submit" class="btn">Search</button>
+        <?php if ($search !== ''): ?>
+          <a href="index.php">Clear</a>
+        <?php endif; ?>
+      </form>
+
+      <?php if (!$movies): ?>
+        <p>No movies found for "<?= htmlspecialchars($search) ?>".</p>
+      <?php endif; ?>
       <div class="grid">
         <?php foreach ($movies as $movie): ?>
           <article class="card">
             <h3><?= htmlspecialchars($movie['title']) ?></h3>
+            <?php if (!empty($movie['poster'])): ?>
+  <img src="images/<?= htmlspecialchars($movie['poster']) ?>"
+       alt="Poster of <?= htmlspecialchars($movie['title']) ?>">
+<?php endif; ?>
             <p class="meta"><?= htmlspecialchars($movie['genre']) ?> | <?= (int)$movie['release_year'] ?></p>
             <p><?= htmlspecialchars($movie['description']) ?></p>
 

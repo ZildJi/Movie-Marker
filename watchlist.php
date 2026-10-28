@@ -46,6 +46,10 @@ unset($_SESSION['flash']);
         <?php foreach ($items as $m): ?>
           <article class="card <?= $m['status'] === 'watched' ? 'watched' : '' ?>">
             <h3><?= htmlspecialchars($m['title']) ?></h3>
+            <?php if (!empty($m['poster'])): ?>
+  <img src="images/<?= htmlspecialchars($m['poster']) ?>"
+       alt="Poster of <?= htmlspecialchars($m['title']) ?>">
+<?php endif; ?>
             <p class="meta"><?= htmlspecialchars($m['genre']) ?> | <?= (int)$m['release_year'] ?></p>
             <p class="meta">Status: <?= $m['status'] === 'watched' ? 'Watched' : 'Want to watch' ?></p>
 

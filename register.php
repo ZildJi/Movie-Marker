@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <header>
     <h1><a href="index.php">Movie Marker</a></h1>
     <nav>
-      <a href="#">Log in</a>
+      <a href="login.php">Log in</a>
       <a href="register.php">Sign up</a>
     </nav>
   </header>
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Create your account</h2>
 
     <?php if ($success): ?>
-      <div class="alert success">Account created! Logging in comes in the next step.</div>
+      <div class="alert success">Account created! You can now <a href="login.php">log in</a>.</div>
     <?php endif; ?>
 
     <?php foreach ($errors as $error): ?>
@@ -84,6 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </label>
       <button type="submit">Sign up</button>
     </form>
+
+    <p class="form-links">
+      Already have an account? <a href="login.php">Log in</a>
+    </p>
   </main>
 </body>
 </html>
